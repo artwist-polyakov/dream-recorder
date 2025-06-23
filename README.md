@@ -272,7 +272,8 @@ docker compose -f docker-compose.dev.yml up -d
 ./dreamctl config
 ```
 
-The app will be available at [http://localhost:5000](http://localhost:5000) (unless you choose to change the default port in the config)
+The app will be available at [http://localhost:5000](http://localhost:5000) by default. The server port can be adjusted in `.env` (`PORT`) and `config.json`.
+After changing the port you must rebuild the image with `docker compose build`.
 
 To simulate sensor button presses, you can either use the on-screen developer console (available when running in dev mode), or:
    - Note: You will need Python 3.12 installed on your system - [Python documentation](https://wiki.python.org/moin/BeginnersGuide/Download)

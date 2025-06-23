@@ -1,5 +1,9 @@
 FROM python:3.12
 
+# Port configuration (can be overridden via build-arg)
+ARG PORT=5000
+ENV PORT=$PORT
+
 # Install system dependencies
 RUN apt-get update && \
     apt-get install -y ffmpeg libportaudio2 && \
@@ -16,7 +20,7 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 COPY . .
 
 # Expose Flask port
-EXPOSE 5000
+EXPOSE ${PORT}
 
 # Default command (can be overridden by docker compose)
 CMD ["python", "dream_recorder.py"]
