@@ -1,6 +1,9 @@
 services:
   app:
-    build: .
+    build:
+      context: .
+      args:
+        PORT: ${PORT}
     ports:
       - "${PORT}:${PORT}"
     volumes:
