@@ -315,6 +315,25 @@ You can access the dream management page from your computer by going to http://d
    |--|--|
 </details>
 
+
+## Accessing Generated Media
+The `docker-compose.dev.yml` configuration stores database, media, and log files in **named volumes**: `db-data`, `media-data`, and `logs-data`. Consequently, anything under `media/` lives inside the container by default.
+
+To copy generated videos out of the container, reference the `app` service with `docker compose cp`:
+
+```bash
+docker compose cp app:/app/media/video/<file> ./my-videos/
+```
+
+For direct access, you can edit `docker-compose.dev.yml` to mount a host directory:
+
+```yaml
+services:
+  app:
+    volumes:
+      - ./media:/app/media
+```
+
 ## Troubleshooting
 - **Logs:**
   - App logs: `docker compose logs -f`
